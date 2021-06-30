@@ -51,9 +51,7 @@ public class PersonService {
         save.setNo(MathUtil.getPersonNo(save.getId()));
         personRepository.save(save);
         log.info("新增人员:{},成功!", save.getName());
-        PersonDoc build = PersonDoc.builder().no(person.getNo())
-                .name(person.getName()).departmentName(person.getDepartmentName()).build();
-        return Result.ofSuccess();
+        return Result.success("新增人员"+ save.getName() +"成功!");
     }
 
     /**
@@ -68,9 +66,9 @@ public class PersonService {
             personRepository.save(person);
         } catch (Exception e) {
             log.error("修改人员异常,异常信息为：{}", e.getMessage());
-            return Result.ofFail(e.getMessage());
+            return Result.error(e.getMessage());
         }
-        return Result.ofSuccess();
+        return Result.success();
     }
 
     /**
@@ -82,7 +80,7 @@ public class PersonService {
     public Result delete(Integer id) {
         Person person = Person.builder().id(id).isDelete(true).build();
         personRepository.save(person);
-        return Result.ofSuccess();
+        return Result.success();
     }
 
     /**
@@ -95,7 +93,7 @@ public class PersonService {
         for (String s : ids.split(",")) {
             delete(Integer.parseInt(s));
         }
-        return Result.ofSuccess();
+        return Result.success();
     }
 
 }

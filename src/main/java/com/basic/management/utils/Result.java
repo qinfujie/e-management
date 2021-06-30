@@ -1,14 +1,16 @@
 package com.basic.management.utils;
 
-import lombok.Data;
+import lombok.*;
 
-import java.io.Serializable;
 
 /**
  * @author fujie
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Data
-public class Result<T> implements Serializable {
+public class Result<T> {
 
     /**
      * 是否成功
@@ -40,32 +42,28 @@ public class Result<T> implements Serializable {
      */
     private Exception e;
 
-    public static Result ofSuccess() {
-        Result result = new Result();
-        result.success = true;
-        return result;
+    public static <T> Result success () {
+        return Result.builder().success(true).build();
     }
 
-    public static Result<Object> ofSuccess(Object data) {
-        Result<Object> result = new Result<>();
-        result.success = true;
-        result.setData(data);
-        return result;
+    public static <T> Result success(String msg,T obj) {
+        return Result.builder().success(true).msg(msg).data(obj).build();
     }
 
-    public static Result ofFail(String msg, Exception e) {
-        Result result = new Result();
-        result.success = false;
-        result.msg = msg;
-        result.e = e;
-        return result;
+    public static <T> Result success (String msg) {
+        return Result.builder().msg(msg).success(true).build();
     }
 
-    public static Result ofFail(String msg) {
-        Result result = new Result();
-        result.success = false;
-        result.msg = msg;
-        return result;
+    public static <T> Result success (T obj) {
+        return Result.builder().success(true).data(obj).build();
+    }
+
+    public static <T> Result error (String msg) {
+        return Result.builder().success(false).msg(msg).build();
+    }
+
+    public static <T> Result error (String msg, Exception e) {
+        return Result.builder().success(false).msg(msg).e(e).build();
     }
 
 }

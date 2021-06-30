@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     public Result bizExceptionHandler(HttpServletRequest req, BizException e){
         log.error("异常接口为:{}",req.getRequestURL().toString());
         log.error("发生业务异常！原因是：{},",e.getMsg());
-        return Result.ofFail("发生业务异常！原因是：" + e.getMsg());
+        return Result.error("发生业务异常！原因是：" + e.getMsg());
     }
 
     /**
@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
     public Result exceptionHandler(HttpServletRequest req, NullPointerException e){
         log.error("发生空指针异常！原因是:{}",e.getMessage());
         log.error("异常接口为：{}",req.getRequestURL().toString());
-        return Result.ofFail("空指针异常！原因是：" + e.getMessage());
+        return Result.error("空指针异常！原因是：" + e.getMessage());
     }
 
 
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
     public Result exceptionHandler(HttpServletRequest req, Exception e){
         log.error("异常接口为:{}",req.getRequestURL().toString());
         log.error("未知异常！原因是:{},",e.getMessage());
-        return Result.ofFail("未知异常！原因是" + e.getMessage());
+        return Result.error("未知异常！原因是" + e.getMessage());
     }
 
 }
