@@ -1,0 +1,30 @@
+{
+  "groups": [
+    {
+      "name": "app-config",
+      "type": "com.basic.management.config.AppConfig",
+      "sourceType": "com.basic.management.config.AppConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app-config.fast-storage-port",
+      "type": "java.lang.String",
+      "description": "Description for app-config.fast-storage-port.",
+      "sourceType": "com.basic.management.config.AppConfig"
+    },
+    {
+      "name": "app-config.res-host",
+      "type": "java.lang.String",
+      "description": "Description for app-config.res-host.",
+      "sourceType": "com.basic.management.config.AppConfig"
+    },
+    {
+      "name": "es.client.url",
+      "type": "java.lang.String",
+      "description": "Description for es.client.url.",
+      "defaultValue": "192.168.0.253:9200"
+    }
+  ],
+  "hints": []
+}

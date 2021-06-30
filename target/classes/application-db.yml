@@ -1,0 +1,77 @@
+#数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://${MYSQL_ADDRESS:192.168.2.244}:${MYSQL_PORT:3306}/${MYSQL_DATABACE:management}?characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: ${MYSQL_USER_NAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    druid:
+      min-idle: 1
+      initial-size: ${INITIAL_SIZE:10}
+      max-active: ${MAX_ACTIVE:20}
+      remove-abandoned: true
+      remove-abandoned-timeout: 1800
+      max-wait: 60000
+      log-abandoned: true
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: 123456
+
+  #redis配置
+  redis:
+    host: ${REDIS_HOST:192.168.2.244}
+    port: ${REDIS_PORT:6379}
+    database: ${REDIS_DATABASE:0}
+    timeout: 6000ms
+    password: ${REDIS_PASSWORD:camp3.0}
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+  # jpa配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false
+    open-in-view: true
+  # rabbitmq配置
+  rabbitmq:
+    host:
+    port:
+    username:
+    password:
+    virtual-host:
+  # es配置
+  elasticsearch:
+    rest:
+      uris: 192.168.0.253:9200
+
+
+# 文件服务器配置
+fdfs:
+  so-timeout: 3000
+  # 超时时间
+  connect-timeout: 3000
+  thumb-image: # 生成缩略图
+    width: 150
+    height: 150
+  # 地址
+  tracker-list:
+    - 192.168.1.57:22122
+app-config:
+  res-host: 192.168.1.57
+  fast-storage-port: 8888
+
+# pageHelp插件
+pagehelper:
+  helper-dialect: mysql
+  params: count
+  reasonable: true
+  support-methods-arguments: true
+
+

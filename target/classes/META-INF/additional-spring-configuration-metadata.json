@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "app-config.res-host",
+      "type": "java.lang.String",
+      "description": "Description for app-config.res-host."
+    },
+    {
+      "name": "app-config.fast-storage-port",
+      "type": "java.lang.String",
+      "description": "Description for app-config.fast-storage-port."
+    },
+    {
+      "name": "es.client.url",
+      "type": "java.lang.String",
+      "defaultValue": "192.168.0.253:9200",
+      "description": "Description for es.client.url."
+    }
+  ] }

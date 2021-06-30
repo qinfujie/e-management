@@ -1,0 +1,11 @@
+server:
+  port: 8110
+spring:
+  profiles:
+    active: ${ENV:dev},db
+
+
+
+
+
+
