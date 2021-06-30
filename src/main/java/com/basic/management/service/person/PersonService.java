@@ -1,21 +1,17 @@
 package com.basic.management.service.person;
+
 import cn.hutool.core.util.ObjectUtil;
 import com.basic.management.config.BizException;
 import com.basic.management.dao.person.PersonRepository;
 import com.basic.management.dto.person.PersonInsertDto;
-import com.basic.management.dto.person.PersonQueryDto;
 import com.basic.management.dto.person.PersonUpdateDto;
 import com.basic.management.entity.person.Person;
+import com.basic.management.entity.person.PersonDoc;
 import com.basic.management.utils.MathUtil;
 import com.basic.management.utils.Result;
-import com.basic.management.vo.person.PersonInfoVo;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 /**
@@ -42,8 +38,8 @@ public class PersonService {
         // 查询人员信息
         Person oldPerson = personRepository.findByIdCard(personInsertDto.getIdCard());
         if (!ObjectUtil.isEmpty(oldPerson)) {
-            log.error("系统中已存在证件编号:{}",oldPerson.getIdCard());
-            throw new BizException("系统中已存在证件编号"+oldPerson.getIdCard());
+            log.error("系统中已存在证件编号:{}", oldPerson.getIdCard());
+            throw new BizException("系统中已存在证件编号" + oldPerson.getIdCard());
         }
 
         // 组装人员信息并新增
@@ -54,7 +50,9 @@ public class PersonService {
         // 更新人员编号
         save.setNo(MathUtil.getPersonNo(save.getId()));
         personRepository.save(save);
-        log.info("新增人员:{},成功!",save.getName());
+        log.info("新增人员:{},成功!", save.getName());
+        PersonDoc build = PersonDoc.builder().no(person.getNo())
+                .name(person.getName()).departmentName(person.getDepartmentName()).build();
         return Result.ofSuccess();
     }
 
@@ -81,7 +79,7 @@ public class PersonService {
      * @param id 主键
      * @return Result
      */
-    public Result delete (Integer id) {
+    public Result delete(Integer id) {
         Person person = Person.builder().id(id).isDelete(true).build();
         personRepository.save(person);
         return Result.ofSuccess();
@@ -93,25 +91,11 @@ public class PersonService {
      * @param ids 主键集合
      * @return Result
      */
-    public Result deleteBatch (String ids) {
+    public Result deleteBatch(String ids) {
         for (String s : ids.split(",")) {
             delete(Integer.parseInt(s));
         }
         return Result.ofSuccess();
     }
-
-    /**
-     * 分页查询人员信息
-     *
-     * @param queryDto 入参
-     * @return Result<PageInfo<PersonInfoVo>>
-     */
-//    public Result<PageInfo<PersonInfoVo>> findByParam (PersonQueryDto queryDto) {
-//        PageHelper.startPage(queryDto.getRow(),queryDto.getPageSize());
-//        List<PersonInfoVo> personList =
-//    }
-
-
-
 
 }

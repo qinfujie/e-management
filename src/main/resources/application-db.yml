@@ -46,6 +46,11 @@ spring:
     username:
     password:
     virtual-host:
+  # es配置
+  elasticsearch:
+    rest:
+      uris: 192.168.0.253:9200
+
 
 # 文件服务器配置
 fdfs:
@@ -68,3 +73,5 @@ pagehelper:
   params: count
   reasonable: true
   support-methods-arguments: true
+
+

@@ -69,7 +69,7 @@ public class PersonController {
      * @param ids 主键集
      * @return Result
      */
-    @GetMapping("/delete")
+    @GetMapping("/delete/batch")
     @ApiOperation(value = "根据主键集删除人员信息", notes = "根据主键集删除人员信息")
     public Result deleteBatch (@RequestParam @NotEmpty(message = "主键集不能为空！") String ids) {
         return personService.deleteBatch(ids);
