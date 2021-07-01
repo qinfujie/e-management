@@ -51,8 +51,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value =Exception.class)
     public Result exceptionHandler(HttpServletRequest req, Exception e){
         log.error("异常接口为:{}",req.getRequestURL().toString());
-        log.error("未知异常！原因是:{},",e.getMessage());
-        return Result.error("未知异常！原因是" + e.getMessage());
+        log.error("未知异常,错误信息为:{},",e.getMessage());
+        return Result.error("未知异常,错误信息为" + e.getMessage());
     }
 
 }

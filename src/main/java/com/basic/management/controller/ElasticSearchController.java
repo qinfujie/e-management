@@ -47,7 +47,7 @@ public class ElasticSearchController {
         if (!isSuccess) {
             throw new BindException("索引创建失败!");
         }
-        return Result.ofSuccess();
+        return Result.success();
     }
 
     /**
@@ -64,18 +64,18 @@ public class ElasticSearchController {
         if (StrUtil.isBlank(s)) {
             throw new BindException("提交数据失败!");
         }
-        return Result.ofSuccess();
+        return Result.success();
     }
 
 
     @PostMapping("/search/data/by/id")
     @ApiOperation(value = "通过id查询数据",notes = "通过id查询数据")
-    public Result<Map<String, Object>> searchDataById (@RequestBody @Validated EsSearchDto searchDto) throws IOException {
+    public Result searchDataById (@RequestBody @Validated EsSearchDto searchDto) throws IOException {
         Map<String, Object> map = searchUtils.searchDataById(searchDto.getIndex(), searchDto.getId(), searchDto.getFields());
         if (CollectionUtil.isEmpty(map)) {
             throw new BindException("查询数据失败!");
         }
-        return Result.ofSuccess(map);
+        return Result.success(map);
     }
 
 

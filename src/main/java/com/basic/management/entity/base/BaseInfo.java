@@ -1,4 +1,5 @@
 package com.basic.management.entity.base;
+import com.basic.management.vo.LoginInfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -63,6 +64,8 @@ public class BaseInfo {
         Date now = new Date();
         if (createTime == null) {
             createTime = now;
+            createNo = LoginInfo.getUserNo();
+            createName = LoginInfo.getUserName();
         }
 
         if (updateTime == null) {
@@ -73,6 +76,8 @@ public class BaseInfo {
     @PreUpdate
     protected void preUpdate() {
         updateTime = new Date();
+        updateNo = LoginInfo.getUserNo();
+        updateName = LoginInfo.getUserName();
     }
 
 }

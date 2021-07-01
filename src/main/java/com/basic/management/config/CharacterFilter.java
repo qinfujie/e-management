@@ -25,8 +25,6 @@ import static com.basic.management.constant.SystemCons.TOKEN;
 @Configuration
 public class CharacterFilter implements Filter  {
 
-    private final HttpServletContent servletContent;
-
     /**
      * 放行
      */
@@ -41,11 +39,9 @@ public class CharacterFilter implements Filter  {
         RELEASE.add("swagger");
         RELEASE.add("docs");
         RELEASE.add("/file");
+        RELEASE.add(".css");
     }
 
-    public CharacterFilter(HttpServletContent servletContent) {
-        this.servletContent = servletContent;
-    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -76,6 +72,7 @@ public class CharacterFilter implements Filter  {
             e.printStackTrace();
         }
         if (!isEffect) {
+            ThreadLocalConfig.clear();
             HttpServletResponse response = (HttpServletResponse)servletResponse;
             ObjectMapper mapper = new ObjectMapper();
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -84,7 +81,7 @@ public class CharacterFilter implements Filter  {
         }
         // 获取全局对象,设置全局变量,解析token
         UserInfo info = TokenUtils.parseToken(token);
-        servletContent.getServletContext().setAttribute(SystemCons.USER_INFO, JSON.toJSONString(info));
+        ThreadLocalConfig.setValue(info);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }
