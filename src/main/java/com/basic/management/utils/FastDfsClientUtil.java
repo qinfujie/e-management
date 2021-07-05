@@ -33,6 +33,7 @@ import java.util.stream.Collectors;
 @Component
 public class FastDfsClientUtil {
 
+
     private final static String HTTP = "http://";
 
     private final FastFileStorageClient storageClient;

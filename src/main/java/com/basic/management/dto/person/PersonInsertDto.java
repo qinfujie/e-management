@@ -1,12 +1,9 @@
 package com.basic.management.dto.person;
 
-import com.basic.management.entity.base.BaseInfo;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 /**

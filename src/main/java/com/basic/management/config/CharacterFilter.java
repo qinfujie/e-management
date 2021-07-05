@@ -40,6 +40,7 @@ public class CharacterFilter implements Filter  {
         RELEASE.add("docs");
         RELEASE.add("/file");
         RELEASE.add(".css");
+        RELEASE.add("ui");
     }
 
 

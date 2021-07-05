@@ -4,14 +4,20 @@ import cn.hutool.core.util.ObjectUtil;
 import com.basic.management.config.BizException;
 import com.basic.management.dao.person.PersonRepository;
 import com.basic.management.dto.person.PersonInsertDto;
+import com.basic.management.dto.person.PersonQueryDto;
 import com.basic.management.dto.person.PersonUpdateDto;
 import com.basic.management.entity.person.Person;
-import com.basic.management.entity.person.PersonDoc;
+import com.basic.management.mapper.person.PersonMapper;
 import com.basic.management.utils.MathUtil;
+import com.basic.management.utils.PageModel;
+import com.basic.management.utils.PageUtil;
 import com.basic.management.utils.Result;
+import com.basic.management.vo.person.PersonInfoVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
@@ -25,8 +31,11 @@ public class PersonService {
 
     private final PersonRepository personRepository;
 
-    public PersonService(PersonRepository personRepository) {
+    private final PersonMapper personMapper;
+
+    public PersonService(PersonRepository personRepository, PersonMapper personMapper) {
         this.personRepository = personRepository;
+        this.personMapper = personMapper;
     }
 
     /**
@@ -94,6 +103,18 @@ public class PersonService {
             delete(Integer.parseInt(s));
         }
         return Result.success();
+    }
+
+    /**
+     * 分页查询人员信息
+     *
+     * @param queryDto 入参
+     * @return Result<PageModel<PersonInfoVo>>
+     */
+    public Result<PageModel<PersonInfoVo>> findPerson (PersonQueryDto queryDto) {
+        PageModel<PersonInfoVo> query = PageUtil.query(queryDto.getRow(), queryDto.getPageSize(),
+                () -> personMapper.findPersonInfo(queryDto));
+        return Result.success(query);
     }
 
 }

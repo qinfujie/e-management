@@ -3,7 +3,7 @@ package com.basic.management.config;
 import com.basic.management.vo.user.UserInfo;
 
 /**
- * 用于存储当前线程的数据
+ * 线程本地存储
  *
  * @author fujie
  */

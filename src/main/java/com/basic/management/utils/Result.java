@@ -28,11 +28,6 @@ public class Result<T> {
     private T data;
 
     /**
-     * 错误码
-     */
-    private String code;
-
-    /**
      * 错误描述
      */
     private String msg;
@@ -42,28 +37,29 @@ public class Result<T> {
      */
     private Exception e;
 
-    public static <T> Result success () {
-        return Result.builder().success(true).build();
+    public static <T> Result<T> success() {
+        return Result.<T>builder().success(true).build();
     }
 
-    public static <T> Result success(String msg,T obj) {
-        return Result.builder().success(true).msg(msg).data(obj).build();
+
+    public static <T> Result<T> success(String msg,T obj) {
+        return Result.<T>builder().msg(msg).data(obj).build();
     }
 
-    public static <T> Result success (String msg) {
-        return Result.builder().msg(msg).success(true).build();
+    public static <T> Result<T> success (String msg) {
+        return Result.<T>builder().msg(msg).success(true).build();
     }
 
-    public static <T> Result success (T obj) {
-        return Result.builder().success(true).data(obj).build();
+    public static <T> Result<T> success (T obj) {
+        return Result.<T>builder().data(obj).success(true).build();
     }
 
-    public static <T> Result error (String msg) {
-        return Result.builder().success(false).msg(msg).build();
+    public static <T> Result<T> error (String msg) {
+        return Result.<T>builder().msg(msg).success(false).build();
     }
 
-    public static <T> Result error (String msg, Exception e) {
-        return Result.builder().success(false).msg(msg).e(e).build();
+    public static <T> Result<T> error (String msg, Exception e) {
+        return Result.<T>builder().msg(msg).success(false).e(e).build();
     }
 
 }

@@ -16,4 +16,5 @@ public class Page {
 
     @ApiModelProperty(value = "起始大小")
     private Integer pageSize = 15;
+
 }

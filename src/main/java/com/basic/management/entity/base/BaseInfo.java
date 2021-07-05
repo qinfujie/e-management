@@ -67,7 +67,6 @@ public class BaseInfo {
             createNo = LoginInfo.getUserNo();
             createName = LoginInfo.getUserName();
         }
-
         if (updateTime == null) {
             updateTime = now;
         }

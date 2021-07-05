@@ -1,8 +1,11 @@
 package com.basic.management.controller.person;
 import com.basic.management.dto.person.PersonInsertDto;
+import com.basic.management.dto.person.PersonQueryDto;
 import com.basic.management.dto.person.PersonUpdateDto;
 import com.basic.management.service.person.PersonService;
+import com.basic.management.utils.PageModel;
 import com.basic.management.utils.Result;
+import com.basic.management.vo.person.PersonInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
@@ -11,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * 人员Api
+ * 人员Controller
  *
  * @author fujie
  */
@@ -73,6 +76,18 @@ public class PersonController {
     @ApiOperation(value = "根据主键集删除人员信息", notes = "根据主键集删除人员信息")
     public Result deleteBatch (@RequestParam @NotEmpty(message = "主键集不能为空！") String ids) {
         return personService.deleteBatch(ids);
+    }
+
+    /**
+     * 分页查询人员信息
+     *
+     * @param queryDto 查询条件
+     * @return Result<PageModel<PersonInfoVo>>
+     */
+    @PostMapping("/find/person")
+    @ApiOperation(value = "分页查询人员信息", notes = "分页查询人员信息")
+    public Result<PageModel<PersonInfoVo>> findPerson (@RequestBody @Validated PersonQueryDto queryDto) {
+        return personService.findPerson(queryDto);
     }
 
 
