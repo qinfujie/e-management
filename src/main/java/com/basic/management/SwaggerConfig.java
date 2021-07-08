@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .title("工具项目")
                 .description("用于测试学习")
                 .version("9.0")
-                .contact(new Contact("秦甫杰","https://blog.csdn.net/Xiaodongge521","wangdongdong0224@163.com"))
+                .contact(new Contact("秦甫杰","https://blog.csdn.net/Xiaodongge521","qinfujie1016@163.com"))
                 .license("The Apache License")
                 .licenseUrl("http://www.baidu.com")
                 .build();

@@ -32,10 +32,6 @@ public class Result<T> {
      */
     private String msg;
 
-    /**
-     * 异常信息
-     */
-    private Exception e;
 
     public static <T> Result<T> success() {
         return Result.<T>builder().success(true).build();
@@ -58,8 +54,5 @@ public class Result<T> {
         return Result.<T>builder().msg(msg).success(false).build();
     }
 
-    public static <T> Result<T> error (String msg, Exception e) {
-        return Result.<T>builder().msg(msg).success(false).e(e).build();
-    }
 
 }

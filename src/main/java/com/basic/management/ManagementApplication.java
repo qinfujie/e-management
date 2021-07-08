@@ -1,6 +1,7 @@
 package com.basic.management;
 
 import com.github.tobato.fastdfs.FdfsClientConfig;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
@@ -22,6 +23,7 @@ import javax.servlet.MultipartConfigElement;
 
 @Import(FdfsClientConfig.class)
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
+@EnableRabbit
 @SpringBootApplication
 public class ManagementApplication {
 
